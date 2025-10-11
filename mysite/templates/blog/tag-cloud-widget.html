@@ -1,0 +1,8 @@
+{% load static %}
+
+<h4 class="tagcloud-title">Tag Clouds</h4>
+<ul>
+    {% for name in categories %}
+    <li><a href="{% url 'blog:category' cat_name=name %}">{{name}}</a></li>
+    {% endfor %}
+</ul>

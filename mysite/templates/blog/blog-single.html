@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% load blog_tags %}
-
 {% block content %}
 
 
@@ -36,10 +35,9 @@
 					</div>
 					<div class="col-lg-3  col-md-3 meta-details">
 						<ul class="tags">
-							<li><a href="#">Food,</a></li>
-							<li><a href="#">Technology,</a></li>
-							<li><a href="#">Politics,</a></li>
-							<li><a href="#">Lifestyle</a></li>
+							{% for cat in posts.category.all %}
+								<a href="{% url 'blog:category' cat_name=cat.name %}">{{cat.name}}</a>{% if not forloop.last %},{% endif %}
+							{% endfor %}
 						</ul>
 						<div class="user-details row">
 							<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span
@@ -257,11 +255,7 @@
 			<div class="col-lg-4 sidebar-widgets">
 				<div class="widget-wrap">
 					<div class="single-sidebar-widget search-widget">
-						<form class="search-form" action="#">
-							<input placeholder="Search Posts" name="search" type="text" onfocus="this.placeholder = ''"
-								onblur="this.placeholder = 'Search Posts'">
-							<button type="submit"><i class="fa fa-search"></i></button>
-						</form>
+						{% include 'blog/search-widget.html' %}
 					</div>
 
 					{% include 'blog/blog-writer.html' %}
@@ -272,53 +266,9 @@
 					<div class="single-sidebar-widget ads-widget">
 						<a href="#"><img class="img-fluid" src="{% static 'img/blog/ads-banner.jpg' %}" alt=""></a>
 					</div>
-					<div class="single-sidebar-widget post-category-widget">
-						<h4 class="category-title">Post Catgories</h4>
-						<ul class="cat-list">
-							<li>
-								<a href="#" class="d-flex justify-content-between">
-									<p>Technology</p>
-									<p>37</p>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="d-flex justify-content-between">
-									<p>Lifestyle</p>
-									<p>24</p>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="d-flex justify-content-between">
-									<p>Fashion</p>
-									<p>59</p>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="d-flex justify-content-between">
-									<p>Art</p>
-									<p>29</p>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="d-flex justify-content-between">
-									<p>Food</p>
-									<p>15</p>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="d-flex justify-content-between">
-									<p>Architecture</p>
-									<p>09</p>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="d-flex justify-content-between">
-									<p>Adventure</p>
-									<p>44</p>
-								</a>
-							</li>
-						</ul>
-					</div>
+
+					{% postcategories %}
+
 					<div class="single-sidebar-widget newsletter-widget">
 						<h4 class="newsletter-title">Newsletter</h4>
 						<p>
@@ -344,21 +294,7 @@
 						</p>
 					</div>
 					<div class="single-sidebar-widget tag-cloud-widget">
-						<h4 class="tagcloud-title">Tag Clouds</h4>
-						<ul>
-							<li><a href="#">Technology</a></li>
-							<li><a href="#">Fashion</a></li>
-							<li><a href="#">Architecture</a></li>
-							<li><a href="#">Fashion</a></li>
-							<li><a href="#">Food</a></li>
-							<li><a href="#">Technology</a></li>
-							<li><a href="#">Lifestyle</a></li>
-							<li><a href="#">Art</a></li>
-							<li><a href="#">Adventure</a></li>
-							<li><a href="#">Food</a></li>
-							<li><a href="#">Lifestyle</a></li>
-							<li><a href="#">Adventure</a></li>
-						</ul>
+						{% tagcloud %}
 					</div>
 				</div>
 			</div>
