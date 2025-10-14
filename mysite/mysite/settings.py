@@ -39,9 +39,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website.apps.WebsiteConfig',
     'django.contrib.humanize',
+
+    'django_summernote',
     'django_extensions',
+    'django.contrib.sites',
     'blog',
+    'accounts',
+    
 ]
+
+# site framework
+SITE_ID = 2
+
+# Show summernote with Bootstrap4
+SUMMERNOTE_THEME = 'bs4'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +67,37 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
+
+SUMMERNOTE_CONFIG = {
+
+    # Using SummernoteWidget - iframe mode, default
+    'iframe': True,
+
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': False,
+
+        # Change editor size
+        'width': '1080px',
+        'height': '480',
+
+        # Use proper language setting automatically (default)
+        'lang': None,
+
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    }
+}
 
 TEMPLATES = [
     {

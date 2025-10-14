@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from blog.models import post , Category
-from django.http import HttpResponse , JsonResponse , HttpResponseRedirect
+from blog.models import post
+from django.http import HttpResponseRedirect
 from website.forms import contactform , newsletterform
 
 def index_view(request):
